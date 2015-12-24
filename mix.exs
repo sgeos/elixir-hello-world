@@ -16,7 +16,6 @@ defmodule HelloWorld.Mixfile do
   def application do
     applications = [:logger]
     mod = {HelloWorld.Application, []}
-    IO.puts :init.get_plain_arguments |> Enum.any?(&(&1=='escript.build'))
     case :init.get_plain_arguments |> Enum.any?(&(&1=='escript.build')) do
       true ->
         [applications: applications]
