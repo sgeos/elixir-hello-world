@@ -3,12 +3,13 @@ defmodule HelloWorld.Application do
 
   def start(_type, _args) do
     {:ok, pid} = Task.Supervisor.start_link()
-    Task.Supervisor.async(pid, __MODULE__, :main, [args])
+    main_task(pid)
     {:ok, pid}
   end
 
-  def main([]), do: main ["--name=#{"USER" |> System.get_env }"]
+  def main_task(pid), do: Task.Supervisor.async(pid, __MODULE__, :main, [args])
+
   def main(args), do: Mix.Project.get.project[:escript][:main_module].main(args)
-  def args(), do: System.argv
+  def args(), do: :init.get_plain_arguments |> Enum.map(&to_string/1)
 end
 
