@@ -1,6 +1,6 @@
 # HelloWorld
 
-**TODO: Add description**
+Hello world example written in elixir. Can be run as a command line utility, application or mix task.
 
 ## Installation
 
